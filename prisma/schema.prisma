@@ -19,7 +19,7 @@ model TimelineItem {
   summary String?
   content String?
   slug String?
-  url String?
+  url String? @unique
   publishedAt DateTime
   category String?
   createdAt DateTime @default(now())
