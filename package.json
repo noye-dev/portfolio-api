@@ -8,7 +8,8 @@
     "start": "node dist/index.js",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "crawl": "tsx src/scripts/crawlZenn.ts"
   },
   "keywords": [],
   "author": "",
@@ -19,7 +20,8 @@
     "@prisma/client": "^7.8.0",
     "dotenv": "^17.4.2",
     "express": "^4.21.0",
-    "pg": "^8.20.0"
+    "pg": "^8.20.0",
+    "rss-parser": "^3.13.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.25",
