@@ -1,0 +1,33 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  AWS SAM template for the Serverless Application Model (SAM) application.
+Globals:
+  Function:
+    Timeout: 10
+Resources:
+  ServerlessFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./
+      Handler: api.handler
+      Runtime: nodejs22.x
+      Architectures: [arm64]
+      MemorySize: 512
+      Environment:
+        Variables:
+          DATABASE_URL: ''
+      Events:
+        ApiEvent:
+          Type: HttpApi
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        Minify: true
+        Target: es2022
+        Sourcemap: true
+        EntryPoints: ['src/lambda/api.ts']
+Outputs:
+  ApiEndpoint:
+    Description: 'HTTP API endpoint URL'
+    Value: !Sub 'https://${ServerlessHttpApi}.execute-api.${AWS::Region}.amazonaws.com/'
