@@ -5,6 +5,11 @@ Description: >
 Globals:
   Function:
     Timeout: 10
+Parameters:
+  DatabaseUrl:
+    Type: String
+    Description: 'The database connection URL'
+    NoEcho: true
 Resources:
   ServerlessFunction:
     Type: AWS::Serverless::Function
@@ -16,7 +21,7 @@ Resources:
       MemorySize: 512
       Environment:
         Variables:
-          DATABASE_URL: ''
+          DATABASE_URL: !Ref DatabaseUrl
       Events:
         ApiEvent:
           Type: HttpApi
