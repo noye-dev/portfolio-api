@@ -10,6 +10,9 @@ Parameters:
     Type: String
     Description: 'The database connection URL'
     NoEcho: true
+  AllowedOrigins:
+    Type: String
+    Description: 'List of allowed origins for CORS'
 Resources:
   ServerlessFunction:
     Type: AWS::Serverless::Function
@@ -22,6 +25,7 @@ Resources:
       Environment:
         Variables:
           DATABASE_URL: !Ref DatabaseUrl
+          ALLOWED_ORIGINS: !Ref AllowedOrigins
       Events:
         ApiEvent:
           Type: HttpApi
